@@ -16,7 +16,7 @@ public class MainController {
 
   @RequestMapping({"/", ""})
   public String list(Model model) {
-
+    model.addAttribute("list", licensePlateRepository.findAll());
     return "index";
   }
 
