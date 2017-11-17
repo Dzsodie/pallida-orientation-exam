@@ -5,13 +5,17 @@
   <title>Car license plates</title>
 </head>
 <body>
+<h1>Car license plates</h1>
+<form action="" th:action="@{/search}">
+  <input type="search" placeholder="Search" name="q"/>
+  <button type="submit">Search</button>
+</form>
 <table>
-  <thead class="dark">
+  <thead>
   <tr>
     <th scope="col" th:text="'Plate'"></th>
     <th scope="col" th:text="'Car brand'"></th>
     <th scope="col" th:text="'Car model'"></th>
-    <th scope="col" th:text="'Brand'"></th>
     <th scope="col" th:text="'Color'"></th>
     <th scope="col" th:text="'Year'"></th>
   </tr>

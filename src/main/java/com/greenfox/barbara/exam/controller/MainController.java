@@ -14,15 +14,15 @@ public class MainController {
   @Autowired
   LicensePlateRepository licensePlateRepository;
 
-  @RequestMapping({"/", ""})
+  @RequestMapping("/")
   public String list(Model model) {
     model.addAttribute("list", licensePlateRepository.findAll());
     return "index";
   }
 
   @GetMapping(value = "/search")
-  public String search(@RequestParam(required = false) String keyword, Model model) {
-    model.addAttribute("matching", licensePlateRepository.findIt(keyword));
+  public String search(@RequestParam(required = false) String q, Model model) {
+    model.addAttribute("list", licensePlateRepository.findPlate(q));
     return "index";
   }
 
