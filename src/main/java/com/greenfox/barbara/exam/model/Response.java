@@ -1,6 +1,5 @@
 package com.greenfox.barbara.exam.model;
 
-import com.greenfox.barbara.exam.repository.LicensePlateRepository;
 import java.util.List;
 
 public class Response  {

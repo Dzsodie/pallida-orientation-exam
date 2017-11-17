@@ -1,15 +1,12 @@
 package com.greenfox.barbara.exam.controller;
 
 import com.greenfox.barbara.exam.exception.InvalidSearchError;
-import com.greenfox.barbara.exam.model.LicencePlates;
 import com.greenfox.barbara.exam.repository.LicensePlateRepository;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,7 +34,7 @@ public class MainController {
     String[] temp = q.split("");
 
     for (int j = 0; j < temp.length; j++) {
-      if (!specialCharacters.contains(temp[j])) {
+      if (!specialCharacters.contains(temp[j]) && !(temp.length > 7)) {
         model.addAttribute("list", licensePlateRepository.findPlate(q));
       } else {
         model.addAttribute("error", new InvalidSearchError());
