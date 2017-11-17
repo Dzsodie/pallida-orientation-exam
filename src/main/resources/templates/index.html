@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8"/>
   <title>Car license plates</title>
 </head>
+
 <body>
 <h1>Car license plates</h1>
+
 <form action="" th:action="@{/search}">
   <input type="search" placeholder="Search" name="q"/>
   <button type="submit">Search</button>
 </form>
+
+<a th:href="@{/search/?police != null}"> Police cars only </a>
+<a th:href="@{/search/?diplomat != null}"> Diplomat cars </a>
+
 <table>
   <thead>
   <tr>
@@ -31,5 +38,6 @@
   </tr>
   </tbody>
 </table>
+
 </body>
 </html>

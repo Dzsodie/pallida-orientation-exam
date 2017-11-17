@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,14 +16,26 @@ public class MainController {
   LicensePlateRepository licensePlateRepository;
 
   @RequestMapping("/")
-  public String list(Model model) {
-    model.addAttribute("list", licensePlateRepository.findAll());
+  public String list(
+      @RequestParam(required = false) String police,
+      @RequestParam(required = false) String diplomat,
+      Model model) {
+
+      model.addAttribute("list", licensePlateRepository.findAll());
+
     return "index";
   }
 
   @GetMapping(value = "/search")
   public String search(@RequestParam(required = false) String q, Model model) {
     model.addAttribute("list", licensePlateRepository.findPlate(q));
+    if (q.startsWith("RB")) {
+      model.addAttribute("list", licensePlateRepository.findAllPolice());
+    }
+
+    else if (q.startsWith("DT")) {
+      model.addAttribute("list", licensePlateRepository.findAllDiplomat());
+    }
     return "index";
   }
 
