@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class LicencePlate {
+public class LicencePlates {
 
   @Id
   String plate;
@@ -15,7 +15,7 @@ public class LicencePlate {
   String color;
   Integer year;
 
-  public LicencePlate(String plate, String carBrand, String carModel, String color,
+  public LicencePlates(String plate, String carBrand, String carModel, String color,
       Integer year) {
     this.plate = plate;
     this.carBrand = carBrand;
@@ -24,7 +24,7 @@ public class LicencePlate {
     this.year = year;
   }
 
-  public LicencePlate() {
+  public LicencePlates() {
   }
 
   public String getPlate() {
