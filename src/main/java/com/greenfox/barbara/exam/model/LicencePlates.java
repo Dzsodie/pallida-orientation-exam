@@ -1,6 +1,8 @@
 package com.greenfox.barbara.exam.model;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

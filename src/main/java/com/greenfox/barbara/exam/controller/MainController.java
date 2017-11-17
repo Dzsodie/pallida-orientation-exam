@@ -1,5 +1,6 @@
 package com.greenfox.barbara.exam.controller;
 
+import com.greenfox.barbara.exam.exception.InvalidSearchError;
 import com.greenfox.barbara.exam.model.LicencePlates;
 import com.greenfox.barbara.exam.repository.LicensePlateRepository;
 import java.util.List;
@@ -31,23 +32,31 @@ public class MainController {
 
   @GetMapping(value = "/search")
   public String search(@RequestParam(required = false) String q, Model model) {
-    model.addAttribute("list", licensePlateRepository.findPlate(q));
-    if (q.equals("RB")) {
-      model.addAttribute("list", licensePlateRepository.findAllPolice());
+
+    String specialCharacters = " !#$%&'()*+,./:;<=>?@[]^_`{|}~";
+    String[] temp = q.split("");
+
+    for (int j = 0; j < temp.length; j++) {
+      if (!specialCharacters.contains(temp[j])) {
+        model.addAttribute("list", licensePlateRepository.findPlate(q));
+      } else {
+        model.addAttribute("error", new InvalidSearchError());
+      }
     }
 
-    else if (q.equals("DT")) {
-      model.addAttribute("list", licensePlateRepository.findAllDiplomat());
+      if (q.equals("RB")) {
+        model.addAttribute("list", licensePlateRepository.findAllPolice());
+      } else if (q.equals("DT")) {
+        model.addAttribute("list", licensePlateRepository.findAllDiplomat());
+      }
+      return "index";
     }
-    return "index";
-  }
 
-  @GetMapping(value = "/search/{brand}")
-  public String assigneeTodo(@PathVariable String brand, Model model) {
+    @GetMapping(value = "/search/{brand}")
+    public String assigneeTodo (@PathVariable String brand, Model model){
 
-    model.addAttribute("list", licensePlateRepository.findByCarBrand(brand));
+      model.addAttribute("list", licensePlateRepository.findByCarBrand(brand));
 
-    return "index";
-  }
-
+      return "index";
+    }
 }

@@ -10,6 +10,7 @@
 <h1>Car license plates</h1>
 
 <form action="" th:action="@{/search}">
+  <p th:text="${error} != null ? ${error.getError()} : ''"></p>
   <input type="search" placeholder="Search" name="q"/>
   <button type="submit">Search</button>
 </form>
@@ -41,8 +42,6 @@
   </tr>
   </tbody>
 </table>
-
-<!--<a th:href="${data.carBrand} == null ? @{#} :@{/search/{brand}(brand=${data.carBrand})}"></a>-->
 
 </body>
 </html>
