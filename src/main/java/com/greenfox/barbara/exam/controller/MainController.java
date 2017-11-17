@@ -41,10 +41,10 @@ public class MainController {
       }
     }
 
-      if (q.equals("RB")) {
-        model.addAttribute("list", licensePlateRepository.findAllPolice());
-      } else if (q.equals("DT")) {
-        model.addAttribute("list", licensePlateRepository.findAllDiplomat());
+      if (q.startsWith("RB")) {
+        model.addAttribute("list", licensePlateRepository.findAllPolice(q));
+      } else if (q.startsWith("DT")) {
+        model.addAttribute("list", licensePlateRepository.findAllDiplomat(q));
       }
       return "index";
     }
