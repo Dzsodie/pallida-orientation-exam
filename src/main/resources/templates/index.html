@@ -14,6 +14,7 @@
   <button type="submit">Search</button>
 </form>
 
+
 <a th:href="@{/search/?police != null}"> Police cars only </a>
 <a th:href="@{/search/?diplomat != null}"> Diplomat cars </a>
 
@@ -31,13 +32,17 @@
   <tbody>
   <tr th:each="data: ${list}">
     <td th:text="${data.plate}" ></td>
-    <td th:text="${data.carBrand}"></td>
+    <td>
+      <a th:href="${data.carBrand} == null ? @{#} :@{/search/{brand}(brand=${data.carBrand})}" th:text="${data.carBrand} == null ? 'No brand provided' : ${data.carBrand}"> </a>
+    </td>
     <td th:text="${data.carModel}"></td>
     <td th:text="${data.color}"></td>
     <td th:text="${data.year}"></td>
   </tr>
   </tbody>
 </table>
+
+<!--<a th:href="${data.carBrand} == null ? @{#} :@{/search/{brand}(brand=${data.carBrand})}"></a>-->
 
 </body>
 </html>

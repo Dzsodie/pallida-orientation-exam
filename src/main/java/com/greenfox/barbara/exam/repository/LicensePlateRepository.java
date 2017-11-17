@@ -16,5 +16,7 @@ public interface LicensePlateRepository extends CrudRepository<LicencePlates, St
   @Query(value = "SELECT * FROM exam.licence_plates WHERE plate LIKE %RB%", nativeQuery = true)
   List<LicencePlates> findAllPolice();
 
+  List<LicencePlates> findByCarBrand(String brand);
+
 
 }
